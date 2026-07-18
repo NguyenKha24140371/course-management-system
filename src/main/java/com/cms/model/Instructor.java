@@ -4,23 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="instructors")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Instructor {
+@Table(name = "instructors")
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class Instructor extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
-    private String specialization;
-
-    private Integer experience;
+    @Column(name = "department")
+    private String department; // Khoa/Bộ môn phụ trách (Ví dụ: Công nghệ phần mềm)
 }

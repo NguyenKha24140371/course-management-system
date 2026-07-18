@@ -4,24 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="students")
+@Table(name = "students")
+@PrimaryKeyJoinColumn(name = "user_id")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
+public class Student extends User {
+    private String studentCode;
     private String major;
-
-    private Integer yearLevel;
-
 }
