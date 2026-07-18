@@ -3,10 +3,11 @@ package com.cms.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+// Entity lưu thông tin đăng ký khóa học
 @Entity
-@Table(name="enrollments")
+@Table(name = "enrollments")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,20 +15,26 @@ import java.time.LocalDate;
 @Builder
 public class Enrollment {
 
+    // Khóa chính
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Sinh viên đăng ký
     @ManyToOne
-    @JoinColumn(name="student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
+    // Khóa học đăng ký
     @ManyToOne
-    @JoinColumn(name="course_id")
+    @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    private LocalDate enrollmentDate;
+    // Thời gian đăng ký
+    @Builder.Default
+    private LocalDateTime enrollmentDate = LocalDateTime.now();
 
-    @Enumerated(EnumType.STRING)
-    private EnrollmentStatus status;
+    // Trạng thái đăng ký
+    @Builder.Default
+    private String status = "ENROLLED";
 }
