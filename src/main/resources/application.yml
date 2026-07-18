@@ -12,3 +12,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect # Đổi thành MySQL8Dialect để tương thích tốt hơn
     show-sql: true
+    app:
+      jwt-secret: "ChuoiBiMatNaoDoThatLaDaiDeDamBaoAnToanHeThongCuaBan123456"
+      jwt-expiration-milliseconds: 86400000 # 1 ngày

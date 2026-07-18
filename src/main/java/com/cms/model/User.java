@@ -9,7 +9,6 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-@Nohidden
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -22,6 +21,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore // Thêm cái này để ẩn password khi trả về JSON
     private String password;
 
     @Column(unique = true, nullable = false)

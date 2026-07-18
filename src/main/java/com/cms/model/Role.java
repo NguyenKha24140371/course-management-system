@@ -1,7 +1,7 @@
 package com.cms.model;
 
 public enum Role {
-    ADMIN,
-    INSTRUCTOR,
-    STUDENT
+    ROLE_ADMIN,
+    ROLE_INSTRUCTOR,
+    ROLE_STUDENT
 }

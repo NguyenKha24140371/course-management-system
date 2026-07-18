@@ -27,7 +27,8 @@ public class JwtTokenUtil {
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
 
-        Jwts.builder()
+        // Đã thêm từ khóa return ở đây để sửa lỗi 'missing return statement'
+        return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
@@ -48,7 +49,8 @@ public class JwtTokenUtil {
     // Validate JWT Token
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(key()).build().parse(token);
+            // Thay .parse bằng .parseClaimsJws để validate token có chữ ký chuẩn xác hơn
+            Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token);
             return true;
         } catch (MalformedJwtException | ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException e) {
             // Có thể bổ sung ném Custom Exception tại đây để Global Handler bắt lấy
