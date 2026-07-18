@@ -6,16 +6,15 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class CourseCreateRequest {
+public class CourseUpdateRequest {
 
-    @NotBlank(message = "Course title is required")
-    @Size(max = 255)
+    @NotBlank
     private String title;
 
-    @NotBlank(message = "Description is required")
+    @NotBlank
     private String description;
 
-    @DecimalMin(value = "0.0")
+    @DecimalMin("0.0")
     private BigDecimal price;
 
     @Min(1)
