@@ -17,4 +17,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     // Kiểm tra tên khóa học đã tồn tại chưa
     boolean existsByTitle(String title);
+
 }
