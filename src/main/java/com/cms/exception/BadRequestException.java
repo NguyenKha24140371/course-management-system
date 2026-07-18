@@ -1,6 +1,5 @@
-package com.cms.exception;
+package com.example.exception;
 
-// Exception khi dữ liệu gửi lên không hợp lệ
 public class BadRequestException extends RuntimeException {
 
     public BadRequestException(String message) {

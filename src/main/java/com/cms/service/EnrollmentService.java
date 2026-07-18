@@ -1,7 +1,6 @@
 package com.cms.service;
 
 import com.cms.dto.request.EnrollmentRequest;
-import com.cms.exception.BadRequestException;
 import com.cms.exception.ResourceNotFoundException;
 import com.cms.model.Course;
 import com.cms.model.Enrollment;
