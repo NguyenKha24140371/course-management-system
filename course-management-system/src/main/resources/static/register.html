@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Learning · Create account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-visual">
+    <div class="sidebar__brand" style="padding:0; color:#fff;"><span class="dot"></span> E-Learning</div>
+    <div class="auth-visual__quote">
+      <h2 style="font-size:1.6rem; color:#fff;">Join a platform built around real progress, not just watch time.</h2>
+      <p style="color:rgba(255,255,255,0.75);">Track hours studied, earn certificates, and teach what you know.</p>
+    </div>
+    <p style="color:rgba(255,255,255,0.55); font-size:.78rem;">© 2026 E-Learning. All rights reserved.</p>
+  </div>
+
+  <div class="auth-form-wrap">
+    <div class="auth-card">
+      <span class="eyebrow">Get started</span>
+      <h1>Create your account</h1>
+      <p style="margin-bottom:26px;">Already have one? <a href="login.html" style="color:var(--mint); font-weight:600;">Log in</a></p>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="regUsername">Username</label>
+          <input type="text" id="regUsername" name="username" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" name="password" autocomplete="new-password" required minlength="6">
+          <div class="field-hint">At least 6 characters.</div>
+        </div>
+        <div class="field">
+          <label for="role">I'm joining as</label>
+          <select id="role" name="role">
+            <option value="STUDENT">Student — take courses</option>
+            <option value="INSTRUCTOR">Instructor — teach courses</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create account</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const payload = {
+    fullName: document.getElementById('fullName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    username: document.getElementById('regUsername').value.trim(),
+    password: document.getElementById('regPassword').value,
+    role: document.getElementById('role').value,
+  };
+  try{
+    await AuthAPI.register(payload);
+    toast && toast('Account created — please log in.');
+  }catch(err){ /* demo mode: ignore network errors */ }
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

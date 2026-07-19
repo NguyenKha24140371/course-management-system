@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Learning · My Courses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<style>
+  .progress-track{ height:6px; border-radius:var(--r-pill); background:var(--bg-chip); overflow:hidden; margin-top:10px; }
+  .progress-fill{ height:100%; background:linear-gradient(90deg, var(--action-500), var(--brand-300)); }
+</style>
+</head>
+<body data-active="my">
+<div class="app" id="app">
+  <main>
+    <div class="content">
+      <section class="page-head fade-up">
+        <div>
+          <span class="eyebrow">Learning</span>
+          <h1>My courses</h1>
+          <p>Everything you're enrolled in, with progress saved automatically.</p>
+        </div>
+        <a href="courses.html" class="btn btn-primary">Find a new course</a>
+      </section>
+
+      <div class="grid-cards" id="myGrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));"></div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/shell.js"></script>
+<script>
+function myCourseCard(c, progress){
+  const img = c.img || `https://source.unsplash.com/random/400x300?class&sig=${c.id}`;
+  return `
+    <article class="course-card">
+      <div class="course-card__media"><img src="${img}" alt=""></div>
+      <div class="course-card__body">
+        <h3 class="course-card__title">${c.title}</h3>
+        <div class="course-card__author">${c.instructorName || 'Instructor'}</div>
+        <div class="progress-track"><div class="progress-fill" style="width:${progress}%"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:.74rem; color:var(--text-low); margin-top:6px;">
+          <span>${progress}% complete</span><span>${progress===100?'Done':'In progress'}</span>
+        </div>
+        <a class="btn btn-primary btn-sm btn-block" style="margin-top:12px;" href="course-detail.html?id=${c.id}">Resume</a>
+      </div>
+    </article>`;
+}
+
+(async function init(){
+  const courses = await CourseAPI.list({ page:0, size:4 });
+  const progressValues = [72, 100, 34, 12];
+  document.getElementById('myGrid').innerHTML = courses.map((c,i) => myCourseCard(c, progressValues[i % progressValues.length])).join('');
+})();
+</script>
+</body>
+</html>
