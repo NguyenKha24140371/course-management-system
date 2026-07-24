@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Learning · Admin · Users</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-active="admin-users">
+<div class="app" id="app">
+  <main>
+    <div class="content">
+      <section class="page-head fade-up">
+        <div>
+          <span class="eyebrow">Administration</span>
+          <h1>Users</h1>
+          <p>Students and instructors registered on the platform.</p>
+        </div>
+        <button class="btn btn-primary">Invite user</button>
+      </section>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Joined</th><th>Status</th></tr></thead>
+          <tbody id="userBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/shell.js"></script>
+<script>
+const USERS = [
+  { name:'Akila M.', role:'Instructor', email:'akila@elearning.io', joined:'Jan 2026', status:'Active' },
+  { name:'Alice K.', role:'Student', email:'alice.k@mail.com', joined:'Feb 2026', status:'Active' },
+  { name:'D. Marlowe', role:'Instructor', email:'d.marlowe@elearning.io', joined:'Mar 2026', status:'Active' },
+  { name:'Priya R.', role:'Student', email:'priya.r@mail.com', joined:'Apr 2026', status:'Invited' },
+  { name:'Tom H.', role:'Student', email:'tom.h@mail.com', joined:'Jun 2026', status:'Suspended' },
+];
+const statusColor = { Active:'badge-new', Invited:'badge-hot', Suspended:'badge-promo' };
+document.getElementById('userBody').innerHTML = USERS.map(u => `
+  <tr>
+    <td style="color:#fff; font-weight:600;">${u.name}</td>
+    <td>${u.role}</td>
+    <td>${u.email}</td>
+    <td>${u.joined}</td>
+    <td><span class="badge ${statusColor[u.status]}">${u.status}</span></td>
+  </tr>`).join('');
+</script>
+</body>
+</html>

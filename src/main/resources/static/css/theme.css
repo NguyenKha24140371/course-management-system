@@ -1,0 +1,107 @@
+/* =========================================================
+   E-LEARNING — DESIGN TOKENS
+   Palette lifted from the reference mock: near-black canvas,
+   a burgundy→garnet sidebar gradient, crimson call-to-actions,
+   gold ratings, mint used only as a rare "alive" signal.
+   ========================================================= */
+
+:root{
+  /* --- surfaces --- */
+  --bg-page:        #121014;
+  --bg-topbar:      #1a1820;
+  --bg-panel:       #1c1a22;
+  --bg-card:        #211f27;
+  --bg-card-hover:  #27242e;
+  --bg-input:       #17151b;
+  --bg-chip:        #2a2731;
+
+  /* --- borders / dividers --- */
+  --border-subtle:  rgba(255,255,255,0.07);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  /* --- brand: burgundy → garnet sidebar --- */
+  --brand-100:      #f2c9d3;
+  --brand-300:      #d9698a;
+  --brand-500:      #a9264b;
+  --brand-600:      #8a1d3f;
+  --brand-700:      #5c1230;
+  --brand-900:      #2b0a1c;
+
+  /* --- action red (buttons, links, active states) --- */
+  --action-500:     #e63955;
+  --action-600:     #cf2947;
+  --action-700:     #a81f38;
+
+  /* --- accents --- */
+  --gold:           #f2b90c;
+  --mint:           #7fe8c9;
+  --mint-dim:       #3a6f61;
+
+  /* --- text --- */
+  --text-hi:        #f6f4f7;
+  --text-mid:       #c7c3cd;
+  --text-low:       #8a8693;
+  --text-on-brand:  #fbeaee;
+
+  /* --- radii / shadow / motion --- */
+  --r-sm:  8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-pill: 999px;
+  --shadow-card: 0 10px 30px -12px rgba(0,0,0,0.55);
+  --shadow-pop:  0 18px 44px -14px rgba(0,0,0,0.65);
+  --ease: cubic-bezier(.22,.9,.32,1);
+
+  /* --- type --- */
+  --font-display: 'Sora', 'Segoe UI', sans-serif;
+  --font-body:    'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ color-scheme: dark; }
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 520px at 82% -8%, rgba(169,38,75,0.16), transparent 60%),
+    radial-gradient(900px 480px at -10% 10%, rgba(127,232,201,0.05), transparent 55%),
+    var(--bg-page);
+  color: var(--text-hi);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+p{ margin:0 0 8px; color: var(--text-mid); line-height:1.55; }
+a{ color: inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+button{ font-family: inherit; cursor:pointer; }
+::selection{ background: var(--action-600); color:#fff; }
+
+/* scrollbars */
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background: transparent; }
+::-webkit-scrollbar-thumb{ background: var(--border-strong); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover{ background: var(--brand-500); }
+
+.visually-hidden{
+  position:absolute!important; width:1px;height:1px; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap;
+}
+
+/* focus ring, kept visible everywhere per accessibility floor */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
