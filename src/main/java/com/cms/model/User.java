@@ -21,16 +21,27 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    @com.fasterxml.jackson.annotation.JsonIgnore // Thêm cái này để ẩn password khi trả về JSON
+    @com.fasterxml.jackson.annotation.JsonIgnore // Ẩn password khi trả về JSON
     private String password;
 
     @Column(unique = true, nullable = false)
     private String email;
 
+    // THÊM FIELD NÀY:
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Builder.Default
     private boolean active = true;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public void setRole(String roleInstructor) {
+    }
+
+    // XÓA HÀM setFullName() RỖNG ĐI
+    // Lombok `@Setter` trên đầu class sẽ tự động tạo hàm setFullName(String fullName) chuẩn!
 }
